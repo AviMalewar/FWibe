@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Zap, Users, MessageSquare, Cpu, ArrowRight, Sparkles, Heart, Music, Film } from 'lucide-react';
+import profile from '/Users/avinash/Desktop/t.y.final project/photos/avinash.png'
 
 const features = [
   {
@@ -97,7 +98,7 @@ export default function Landing() {
             <div className="glass-card p-8 relative z-10">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/10">
-                  <img src="/photos/avinash.png" alt="User"  />
+                  <img src="photos/avinash.png" alt="User"  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Avinash</h3>
