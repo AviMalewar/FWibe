@@ -97,7 +97,7 @@ export default function Landing() {
             <div className="glass-card p-8 relative z-10">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/10">
-                  <img src="photos/avinash.png" alt="User"  />
+                  <img src="/photos/avinash.png" alt="User"  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Avinash</h3>
