@@ -1,0 +1,120 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Detailed profile information for a student user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "college": { "type": "string" },
+        "course": { "type": "string" },
+        "year": { "type": "string" },
+        "location": { "type": "string" },
+        "bio": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "music": { "type": "array", "items": { "type": "string" } },
+        "movies": { "type": "array", "items": { "type": "string" } },
+        "hobbies": { "type": "array", "items": { "type": "string" } },
+        "goals": { "type": "array", "items": { "type": "string" } },
+        "personality": { "type": "string" },
+        "availability": { "type": "string" },
+        "collaborationScore": { "type": "number" },
+        "projectsCount": { "type": "number" },
+        "hackathonsCount": { "type": "number" },
+        "profileImage": { "type": "string" },
+        "photos": { "type": "array", "items": { "type": "string" } },
+        "friends": { "type": "array", "items": { "type": "string" } },
+        "favorites": { "type": "array", "items": { "type": "string" } },
+        "profileComplete": { "type": "boolean" }
+      },
+      "required": ["uid", "email"]
+    },
+    "CollaborationPost": {
+      "title": "Collaboration Post",
+      "description": "A post looking for teammates for projects or hackathons.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "skillsNeeded": { "type": "array", "items": { "type": "string" } },
+        "deadline": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "title", "description"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "In-app notification for user events.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["match", "message", "collab", "connection_request", "connection_accepted"] },
+        "content": { "type": "string" },
+        "fromId": { "type": "string" },
+        "fromName": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "content"]
+    },
+    "ConnectionRequest": {
+      "title": "Connection Request",
+      "description": "A request to connect between two users.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fromId": { "type": "string" },
+        "toId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fromId", "toId", "status"]
+    },
+    "Post": {
+      "title": "Social Post",
+      "description": "A post shared by a user in the feed.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorImage": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "likes": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles stored by UID."
+    },
+    "/collaborationPosts/{postId}": {
+      "schema": "CollaborationPost",
+      "description": "Public collaboration posts."
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User-specific notifications."
+    },
+    "/connectionRequests/{requestId}": {
+      "schema": "ConnectionRequest",
+      "description": "Requests to connect between users."
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Social feed posts."
+    }
+  }
+}
